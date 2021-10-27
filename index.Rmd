@@ -1,0 +1,349 @@
+---
+title: "Outstanding User Interfaces with Shiny"
+subtitle: '`r Sys.Date()`'
+author: "David Granjon"
+date: '`r Sys.Date()`'
+output:
+  xaringan::moon_reader:
+    lib_dir: assets/libs
+    css:
+      - assets/css/js4shiny-xaringan-base.css
+      - assets/css/tachyons.min.css
+      #- assets/css/animate.css
+      - assets/css/js4shiny-xaringan-extra.css
+      - assets/css/custom.css
+      - https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css
+    includes:
+      after_body: assets/html/js4shiny-includes.html
+    seal: false
+    chakra: assets/js/remark-latest.min.js
+    nature:
+      beforeInit: ["https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"]
+      ratio: 16:9
+      slideNumberFormat: "%current%"
+      highlightStyle: docco
+      highlightLines: true
+      countIncrementalSlides: false
+---
+class: inverse, center, title-slide, middle
+
+
+# Outstanding User Interfaces with Shiny
+
+## David Granjon
+
+### `r Sys.Date()`
+### R in Pharma 2020
+
+```{r setup, include=FALSE}
+library(emo)
+library(shiny)
+library(countdown)
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  fig.width = 10, fig.height = 6, fig.retina = 2,
+  warning = FALSE, message = FALSE
+)
+
+#xaringanExtra::use_search(show_icon = TRUE)
+xaringanExtra::use_tile_view()
+xaringanExtra::use_share_again()
+xaringanExtra::use_clipboard()
+xaringanExtra::use_tachyons()
+xaringanExtra::use_fit_screen()
+xaringanExtra::use_panelset()
+
+xaringanExtra::use_extra_styles(
+  hover_code_line = TRUE,         #<<
+  mute_unhighlighted_code = TRUE  #<<
+)
+#source("assets/R/utils.R")
+```
+
+```{r js4shiny, echo=FALSE}
+js4shiny::html_setup(stylize = c("fonts", "variables", "code"))
+```
+
+---
+
+# Hi there `r ji("pizza")`
+
+We're in for 20 minutes of **fun**!
+
+- Grab a `r ji("coffee")`
+- Make yourself comfortable `r ji("couch")` or 🧘
+- Ask questions `r ji("question")` 
+
+.flex.tc[
+.w-30.mr3.center[
+<img class="br-100" width="100px" height="100px" src="assets/images/granjda1.jpg" class="svg-img"/>
+<br>
+.f5[David]
+
+.small[Senior Expert Data Scientist, Novartis]
+]
+]
+
+---
+
+# Program
+
+.panelset[
+.panel[.panel-name[🎨 Part 1]
+Tweaks apps style with CSS and Sass
+
+Learning objectives:
+- Discover `{truelle}`.
+- CSS basics.
+- How Sass may help you.
+- High level CSS and Sass tools: `{bslib}` and `{fresh}`.
+]
+
+.panel[.panel-name[💃 Part 2]
+Unleash app interactivity with JavaScript
+
+Learning objectives:
+- Discover how Shiny deals with inputs.
+- Custom handle example.
+- Add React and any JS framework: `{reactR}` and `{packer}`
+
+]
+
+.panel[.panel-name[🧙‍♀️ Part 3]
+Be a warrior: new template from scratch
+
+Learning objectives:
+- Discover `{charpente}`. 
+- ...
+
+]
+
+]
+
+---
+class: inverse center title-slide middle
+# Introduction
+
+
+---
+class: header_background 
+# Shiny
+
+<br/>
+
+.center[
+<img src="assets/images/shiny.svg" width="20%" style="display: block; margin: auto;" class="svg-img"/>
+]
+
+- `{Shiny}` is about 10 years old! 
+- Today, many tools can make your apps shining.
+- Let's review some of them ...
+
+
+---
+class: inverse center title-slide middle
+# 🎨 Tweaks apps style with CSS and Sass 🎨
+
+
+---
+class: header_background 
+# From the simplest app ... 👶
+
+<br>
+
+.center[
+```{r, eval=TRUE, echo=FALSE}
+knitr::include_app("https://gallery.shinyapps.io/084-single-file", height = "400px")
+```
+]
+
+
+---
+class: header_background 
+# Is this a Shiny app ❓
+
+<br>
+
+.center[
+<iframe width="50%" src="https://unleash-shiny.shinyapps.io/intro_dj-system/" allowfullscreen="" frameborder="0" scrolling="yes" height="400px"></iframe>
+]
+
+
+
+---
+class: header_background
+# What's the difference ❓
+
+<br>
+
+- __111__ lines of CSS.
+- 29 lines of JavaScript code.
+- 2 png images (dj gear + rotating wheel).
+- 36 lines of R code (`{wavesurfer}` htmlWidget).
+- Few custom HTML tags.
+
+---
+class: header_background
+# What is CSS?
+
+<br>
+
+CSS stands for Cascading Style Sheets
+
+
+.pull-left[
+## Apply CSS
+```{r}
+tags$style(
+  "p {
+    color: red;
+   }
+  "
+)
+```
+]
+
+.pull-right[
+<iframe width="100%" src="https://unleash-shiny.shinyapps.io/css_selector-class-id/" allowfullscreen="" frameborder="0" scrolling="yes" height="470px"></iframe>
+]
+
+
+---
+class: header_background
+# But CSS becomes messy 🗑
+
+<br>
+
+- Easy to repeat yourself.
+- Hard to read.
+- ...
+
+.center[
+```{r, echo = FALSE, out.width='40%', fig.align='center'}
+knitr::include_graphics("assets/images/alors_heureux.gif")
+```
+]
+
+---
+class: header_background
+# Tidy your CSS with Sass 🧹
+
+<br>
+
+- Sass = Syntactically Awesome Style Sheets.
+- Programmable: variables, loops, operators, modules, ...
+- An R interface exists: `{sass}`.
+
+.center[
+<img src="assets/images/sass.svg" width="20%" style="display: block; margin: auto;" class="svg-img"/>
+]
+
+---
+# 
+
+
+---
+class: header_background
+# Isn't there something easier?
+
+## Higher level interfaces
+
+
+
+---
+class: inverse center title-slide middle
+# 💃 Unleash app interactivity with JavaScript 💃
+
+
+---
+class: header_background 
+# TODO
+
+
+---
+class: inverse center title-slide middle
+# 🧙‍♀ Be a wizard: new template from scratch 🧙‍♀
+
+
+---
+class: header_background 
+# TODO
+
+
+<!--
+
+---
+class: header_background 
+# Welcome {shinyMobile}? 
+
+<br/>
+Built on top of the [Framework7](https://framework7.io/) web framework.
+
+.pull-left[
+- Native look and feel for iOS and Android
+- PWA support.
+- ... also works for desktop apps 😏
+]
+
+.pull-right[
+<img src="assets/images/shinyMobile.svg" width="20%" style="display: block; margin: auto;" class="svg-img"/>
+]
+
+
+---
+class: header_background
+# Progressive web apps (PWA)
+
+<br/>
+## Take some advantages of both worlds:
+
+  - Can be __installed__ on the device ... 
+  - ... But run via a web browser.
+  - Provide __offline__ features (don't expect too much).
+  - One code base (web languages).
+
+<br/>
+--
+.center[
+`r emo::ji("sad")` Less performance than native. 
+]
+
+---
+class: center middle
+# Your turn `r emo::ji("experiment")`! 
+
+```{r, echo = FALSE, out.width='40%', fig.align='center'}
+knitr::include_graphics("assets/images/excited-minions.gif")
+```
+
+---
+class: header_background
+# Production ready app in minutes
+
+##  {truelle} is a {golem} GUI generator `r emo::ji("wizard")`! 
+
+.center[
+<img src="assets/images/truelle.png" width="20%" style="display: block; margin: auto;" class="svg-img"/>
+]
+
+
+---
+class: end_part_1
+
+
+
+---
+class: header_background
+# Slide
+
+```{r, echo = FALSE, out.width='40%', fig.align='center'}
+knitr::include_graphics("assets/images/alors_heureux.gif")
+```
+
+
+
+
+---
+class: end_part_2
+
+-->
