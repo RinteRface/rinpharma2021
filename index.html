@@ -187,19 +187,15 @@ tags$style(
   "
 )
 ```
-
-<style>p {
-    color: red;
-   }
-  </style>
 ]
 
 .pull-right[
-&lt;iframe width="100%" src="https://unleash-shiny.shinyapps.io/css_selector-class-id/" allowfullscreen="" frameborder="0" scrolling="yes" height="470px"&gt;&lt;/iframe&gt;
+&lt;iframe width="100%" src="https://unleash-shiny.shinyapps.io/css_selector-class-id/" allowfullscreen="" frameborder="0" scrolling="yes" height="400px"&gt;&lt;/iframe&gt;
 ]
 
 
 ---
+class: header_background
 # But CSS becomes messy 🗑
 
 &lt;br&gt;
@@ -213,12 +209,13 @@ tags$style(
 ]
 
 ---
+class: header_background
 # Tidy your CSS with Sass 🧹
 
 &lt;br&gt;
 
 - Sass = Syntactically Awesome Style Sheets.
-- Programmable: variables, loops, operators, modules, ...
+- Programmable: variables, functions, loops, operators, modules, ...
 - An R interface exists: `{sass}`.
 
 .center[
@@ -226,8 +223,205 @@ tags$style(
 ]
 
 ---
-# Is there something easier ?
+class: header_background
+# {sass} in action
 
+&lt;br&gt;
+
+.panelset[
+.panel[.panel-name[Variables]
+.small.pull-left[
+
+```r
+rule1 &lt;- ".class-1{ color: $color; }"
+rule2 &lt;- ".class-2{ background-color: $color; }"
+sass(input = list(color = "purple", rule1, rule2))
+```
+]
+
+.pull-right[
+```
+#&gt; /* CSS */
+#&gt; .class-1 {
+#&gt;   color: purple;
+#&gt; }
+#&gt; 
+#&gt; .class-2 {
+#&gt;   background-color: purple;
+#&gt; }
+```
+]
+]
+
+.panel[.panel-name[Functions]
+
+.small.pull-left[
+
+```r
+sass(
+  list(
+    a = 2,
+    b = 4,
+    "@function multiply($parm1, $parm2) {
+      @debug 'parm1 is #{$parm1}';
+      @debug 'parm2 is #{$parm2}';
+
+      @return $parm1 * $parm2;
+    }",
+    ".my-class {
+      width: multiply($a, $b) * 1px;
+    }"
+  )
+)
+```
+]
+
+.pull-right[
+```
+stdin:4 DEBUG: parm1 is 2
+stdin:5 DEBUG: parm2 is 4
+#&gt; /* CSS */
+#&gt; .my-class {
+#&gt;   width: 8px;
+#&gt; }
+```
+]
+
+]
+
+.panel[.panel-name[With Shiny]
+
+.xsmall.pull-left[
+
+```r
+css &lt;- sass(
+  sass_layer(
+    defaults = list(
+      turquoise = "#03a4ff",
+      cyan = "#e705be",
+      green = "#f3d6e9",
+      yellow = "#fdaf2c",
+      red = "#ff483e",
+      "scheme-main" = "hsl(0, 0%, 10%)"
+    ),
+    rules = sass_file(
+      input = system.file(
+        "sass/bulma/bulma.sass",
+        package = "OSUICode"
+      )
+    )
+  )
+)
+```
+]
+
+.pull-right[
+&lt;iframe width="100%" src="https://unleash-shiny.shinyapps.io/sass_examples_shinybulma-custom" allowfullscreen="" frameborder="0" scrolling="yes" height="300px"&gt;&lt;/iframe&gt;
+]
+
+]
+]
+
+&lt;br&gt;
+
+
+---
+class: header_background
+# Isn't there something easier?
+
+&lt;br&gt;
+
+--
+
+.pull-left[
+## {fresh}
+- Built on top of `{sass}`.
+- For `{shiny}`, `{shinydashboard}`, ...
+]
+
+.pull-right[
+## {bslib}
+- Built on top of `{sass}`.
+- For `{shiny}`.
+- Live theming widget.
+- Dynamic theming. 
+- Conditional rendering. 
+- ...
+]
+
+---
+class: header_background
+# {fresh}
+
+&lt;br&gt;
+
+
+.xsmall.pull-left[
+
+```r
+library(fresh)
+dark_theme &lt;- create_theme(
+  bs4dash_vars(
+    navbar_light_color = "#bec5cb",
+    navbar_light_active_color = "#FFF",
+    navbar_light_hover_color = "#FFF"
+  ),
+  bs4dash_yiq(
+    contrasted_threshold = 10, 
+    text_dark = "#FFF", 
+    text_light = "#272c30"
+  ),
+  bs4dash_layout(main_bg = "#353c42"),
+  bs4dash_sidebar_dark(
+    bg = "#272c30", 
+    color = "#bec5cb", 
+    hover_color = "#FFF",
+    submenu_bg = "#272c30", 
+    submenu_color = "#FFF", 
+    submenu_hover_color = "#FFF"
+  ),
+  bs4dash_status(dark = "#272c30"),
+  bs4dash_color(gray_900 = "#FFF", white = "#272c30")
+)
+```
+]
+
+.pull-right[
+&lt;img src="assets/images/bs4Dash-fresh.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+
+---
+class: header_background
+# {bslib}
+
+&lt;br&gt;
+
+.xsmall.pull-left[
+
+```r
+library(bslib)
+bslib_neon_theme &lt;- bs_theme(
+  version = 4, 
+  bg = "#000000",
+  fg = "#FFFFFF",
+  primary = "#9600FF",
+  secondary = "#1900A0",
+  success = "#38FF12",
+  info = "#00F5FB",
+  warning = "#FFF100",
+  danger = "#FF00E3",
+  base_font = "Marker Felt",
+  heading_font = "Marker Felt",
+  code_font = "Chalkduster"
+)
+bs_theme_preview(bslib_neon_theme, with_themer = FALSE)
+```
+]
+
+.pull-right[
+&lt;img src="assets/images/bootstraplib-theme-preview.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
 
 
 ---
@@ -290,7 +484,7 @@ class: header_background
 
 ---
 class: center middle
-# Your turn 🥼! 
+# Your turn 🧪! 
 
 &lt;img src="assets/images/excited-minions.gif" width="40%" style="display: block; margin: auto;" /&gt;
 
