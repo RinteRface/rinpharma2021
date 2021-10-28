@@ -1,0 +1,110 @@
+body {
+  background-color: #000;
+}
+
+main {
+  position:relative;
+  width: 400px;
+  height: 515px;
+  background-image: url('../img/cdj-2000nxs2-mini.png');
+  background-repeat: no-repeat;
+  margin: auto;
+}
+
+
+.play {
+  width: 40px;
+  height: 40px;
+  left: 9px;
+  top: 464px;
+  border-radius: 23px;
+  position: absolute;
+  float: left;
+}
+
+
+.play:hover {
+  box-shadow: 0 0 15px #16a520, 0 0 15px #16a520;
+  cursor: pointer;
+}
+
+
+.cue {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  left: 9px;
+  top: 404px;
+  border-radius: 23px;
+}
+
+
+.cue:hover {
+  box-shadow: 0 0 15px #f77e3d, 0 0 15px #f77e3d;
+  cursor: pointer;
+}
+
+/* Crop image circular: https://crop-circle.imageonline.co/#circlecropresult */
+.jog {
+  position: absolute;
+  width: 52px;
+  height: 52px;
+  background-image: url(../img/cdj-2000nxs2-jog-crown.png);
+  background-repeat: no-repeat;
+  left: 175px;
+  top: 310px;
+  animation: spin infinite linear;
+  animation-duration: 2s;
+}
+
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+.running {
+  animation-play-state: running!important;
+}
+
+.paused {
+  animation-play-state: paused!important;
+}
+
+
+.blink-green {
+  animation: blinker 1s linear infinite;
+}
+
+
+@keyframes blinker {
+  0% {
+    box-shadow: 0 0 0px #a0a0a0;
+  }
+  50% {
+    box-shadow: 0 0 10px 2px #16a520;
+  }
+  100% {
+    box-shadow: 0 0 0px #a0a0a0;
+  }
+}
+
+/* Adjust waveform position */
+#my_ws {
+  position: absolute;
+  left: 110px;
+  top: 35px;
+}
+
+.screen {
+  width: 180px;
+}
+
+#my_ws > wave {
+  height: 60px;
+}

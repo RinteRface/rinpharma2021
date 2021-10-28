@@ -100,7 +100,7 @@ class: header_background
 <img src="assets/images/shiny.svg" width="20%" style="display: block; margin: auto;" class="svg-img"/>
 ]
 
-- `{Shiny}` is about __10__ years old 😲😲😲 
+- `{Shiny}` is about __10__ years old 😲😲😲. 
 - Today, many tools can make your apps __shining__.
 - Let's review some of them ...
 
@@ -113,7 +113,7 @@ class: header_background
 
 .center[
 ```{r, eval=TRUE, echo=FALSE}
-knitr::include_app("https://gallery.shinyapps.io/084-single-file", height = "400px")
+knitr::include_app("http://localhost:3511", height = "400px")
 ```
 ]
 
@@ -125,7 +125,7 @@ class: header_background
 <br>
 
 .center[
-<iframe width="50%" src="https://unleash-shiny.shinyapps.io/intro_dj-system/" allowfullscreen="" frameborder="0" scrolling="yes" height="400px"></iframe>
+<iframe width="50%" src="http://localhost:3512" allowfullscreen="" frameborder="0" scrolling="yes" height="500px" style="margin-top: -50px"></iframe>
 ]
 
 
@@ -228,7 +228,7 @@ tags$style(
 ]
 
 .pull-right[
-<iframe width="100%" src="https://unleash-shiny.shinyapps.io/css_selector-class-id/" allowfullscreen="" frameborder="0" scrolling="yes" height="400px"></iframe>
+<iframe width="100%" src="http://localhost:3513" allowfullscreen="" frameborder="0" scrolling="yes" height="400px"></iframe>
 ]
 
 
@@ -392,7 +392,7 @@ css <- sass(
 ]
 
 .pull-right[
-<iframe width="100%" src="https://unleash-shiny.shinyapps.io/sass_examples_shinybulma-custom" allowfullscreen="" frameborder="0" scrolling="yes" height="300px"></iframe>
+<iframe width="100%" src="http://localhost:3514" allowfullscreen="" frameborder="0" scrolling="yes" height="300px"></iframe>
 ]
 
 ]
@@ -506,9 +506,7 @@ bs_theme_preview(bslib_neon_theme, with_themer = FALSE)
 ]
 
 .pull-right[
-```{r, echo = FALSE, out.width='100%', fig.align='center'}
-knitr::include_graphics("assets/images/bootstraplib-theme-preview.png")
-```
+<iframe width="100%" src="http://localhost:3515" allowfullscreen="" frameborder="0" scrolling="yes" height="400px"></iframe>
 ]
 
 
@@ -518,8 +516,10 @@ class: header_background
 
 <br>
 
+Static plot theming requires `{thematic}`
+
 .center[
-<iframe width="100%" src="https://unleash-shiny.shinyapps.io/bslib_dynamic-theming" allowfullscreen="" frameborder="0" scrolling="yes" height="300px"></iframe>
+<iframe width="100%" src="http://localhost:3516" allowfullscreen="" frameborder="0" scrolling="yes" height="400px"></iframe>
 ]
 
 
@@ -529,15 +529,17 @@ class: header_background
 
 <br>
 
+Only 1 code base, 2 possible outputs 😎️
+
 .pull-left[
 ## BS4 accordion
-<iframe width="100%" src="https://unleash-shiny.shinyapps.io/bslib_conditional-rendering_bs4-accordions" allowfullscreen="" frameborder="0" scrolling="yes" height="300px"></iframe>
+<iframe width="100%" src="http://localhost:3517" allowfullscreen="" frameborder="0" scrolling="yes" height="400px"></iframe>
 ]
 
 
 .pull-right[
 ## BS5 accordion
-<iframe width="100%" src="https://unleash-shiny.shinyapps.io/bslib_conditional-rendering_bs5-accordions" allowfullscreen="" frameborder="0" scrolling="yes" height="300px"></iframe>
+<iframe width="100%" src="http://localhost:3518" allowfullscreen="" frameborder="0" scrolling="yes" height="400px"></iframe>
 ]
 
 
@@ -611,8 +613,12 @@ knitr::include_graphics("assets/images/packer-f7-scaffold.png")
 ]
 
 .panel[.panel-name[😄 Enjoy]
-.center[
-<iframe width="100%" src="https://dgranjon.shinyapps.io/vdpMod" allowfullscreen="" frameborder="0" scrolling="yes" height="300px"></iframe>
+.pull-left[
+R in Pharm 2021 RinteRface [workshop](https://rinpharma2021.rinterface.com/).
+]
+
+.pull-right[
+<iframe width="100%" src="http://localhost:3519" allowfullscreen="" frameborder="0" scrolling="yes" height="300px"></iframe>
 ]
 ]
 
@@ -628,7 +634,7 @@ class: header_background
 .panelset[
 .panel[.panel-name[`renderUI` causes lags]
 .pull-left[
-<iframe width="100%" src="https://unleash-shiny.shinyapps.io/input-system_update-box-renderUI" allowfullscreen="" frameborder="0" scrolling="yes" height="300px"></iframe>
+<iframe width="100%" src="http://localhost:3520" allowfullscreen="" frameborder="0" scrolling="yes" height="300px"></iframe>
 ]
 
 .small.pull-right[
@@ -654,7 +660,7 @@ output$custom_box <- renderUI({
 .panel[.panel-name[Prefer `update_*` functions]
 
 .pull-left[
-<iframe width="100%" src="https://unleash-shiny.shinyapps.io/input-system_boxes-on-steroids-2" allowfullscreen="" frameborder="0" scrolling="yes" height="300px"></iframe>
+<iframe width="100%" src="http://localhost:3521" allowfullscreen="" frameborder="0" scrolling="yes" height="300px"></iframe>
 ]
 
 .xsmall.pull-right[
