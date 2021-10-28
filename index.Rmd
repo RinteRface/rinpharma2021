@@ -33,7 +33,7 @@ class: inverse, center, title-slide, middle
 ## David Granjon
 
 ### `r Sys.Date()`
-### R in Pharma 2020
+### R in Pharma 
 
 ```{r setup, include=FALSE}
 library(emo)
