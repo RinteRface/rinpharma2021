@@ -86,42 +86,6 @@ We're in for 20 minutes of **fun**!
 ]
 
 ---
-
-# Program
-
-.panelset[
-.panel[.panel-name[🎨 Part 1]
-Tweaks apps style with CSS and Sass
-
-Learning objectives:
-- Discover `{truelle}`.
-- CSS basics.
-- How Sass may help you.
-- High level CSS and Sass tools: `{bslib}` and `{fresh}`.
-]
-
-.panel[.panel-name[💃 Part 2]
-Unleash app interactivity with JavaScript
-
-Learning objectives:
-- Discover how Shiny deals with inputs.
-- Custom handle example.
-- Add React and any JS framework: `{reactR}` and `{packer}`
-
-]
-
-.panel[.panel-name[🧙‍♀️ Part 3]
-Be a warrior: new template from scratch
-
-Learning objectives:
-- Discover `{charpente}`. 
-- ...
-
-]
-
-]
-
----
 class: inverse center title-slide middle
 # Introduction
 
@@ -136,14 +100,9 @@ class: header_background
 <img src="assets/images/shiny.svg" width="20%" style="display: block; margin: auto;" class="svg-img"/>
 ]
 
-- `{Shiny}` is about 10 years old! 
-- Today, many tools can make your apps shining.
+- `{Shiny}` is about __10__ years old 😲😲😲 
+- Today, many tools can make your apps __shining__.
 - Let's review some of them ...
-
-
----
-class: inverse center title-slide middle
-# 🎨 Tweaks apps style with CSS and Sass 🎨
 
 
 ---
@@ -178,10 +137,74 @@ class: header_background
 <br>
 
 - __111__ lines of CSS.
+
+--
+
 - 29 lines of JavaScript code.
+
+--
+
 - 2 png images (dj gear + rotating wheel).
+
+--
+
 - 36 lines of R code (`{wavesurfer}` htmlWidget).
+
+--
+
 - Few custom HTML tags.
+
+---
+class: header_background
+# What you'll learn today
+
+<br>
+
+.panelset[
+.panel[.panel-name[🎨 Part 1]
+__Tweak__ apps style with CSS and Sass
+
+- CSS basics.
+- How Sass may help you: `{sass}`.
+- High level CSS and Sass tools: `{bslib}` and `{fresh}`.
+]
+
+.panel[.panel-name[💃 Part 2]
+Unleash app __interactivity__ with JavaScript (JS)
+
+- Discover how Shiny deals with inputs.
+- Add React and any JS framework with `{packer}`.
+- Optimize your app with custom handlers.
+
+]
+
+.panel[.panel-name[🧙‍♀️ Part 3]
+Create a new template from scratch
+
+- Discover `{charpente}`. 
+
+]
+
+.panel[.panel-name[🚄 Part 4]
+Sorry I don't have time ...
+
+- Discover `{truelle}`.
+- Use preexisting templates.
+]
+
+]
+
+---
+class: center middle
+
+```{r, echo = FALSE, out.width='40%', fig.align='center'}
+knitr::include_graphics("assets/images/excited-minions.gif")
+```
+
+---
+class: inverse center title-slide middle
+# 🎨 Tweak with CSS and Sass 🎨
+
 
 ---
 class: header_background
@@ -215,15 +238,14 @@ class: header_background
 
 <br>
 
-- Easy to repeat yourself.
-- Hard to read.
-- ...
+- Easy to __repeat__ yourself.
+- Difficult to read and maintain. 
+- It's a mess ...
 
-.center[
+
 ```{r, echo = FALSE, out.width='40%', fig.align='center'}
 knitr::include_graphics("assets/images/alors_heureux.gif")
 ```
-]
 
 ---
 class: header_background
@@ -232,11 +254,22 @@ class: header_background
 <br>
 
 - Sass = Syntactically Awesome Style Sheets.
-- Programmable: variables, functions, loops, operators, modules, ...
-- An R interface exists: `{sass}`.
+- __Programmable__: variables, functions, loops, operators, modules, ...
+- Modern web development workflow.
+- Will motivate you to learn CSS.
 
-.center[
-<img src="assets/images/sass.svg" width="20%" style="display: block; margin: auto;" class="svg-img"/>
+--
+
+.pull-left[
+An R interface exists: `{sass}`.
+
+```{r, eval=FALSE}
+install.packages("sass")
+```
+]
+
+.pull-right[
+<img src="assets/images/sass.svg" width="40%" style="display: block; margin: auto;" class="svg-img"/>
 ]
 
 ---
@@ -249,6 +282,7 @@ class: header_background
 .panel[.panel-name[Variables]
 .small.pull-left[
 ```{r, eval=FALSE}
+library(sass)
 rule1 <- ".class-1{ color: $color; }"
 rule2 <- ".class-2{ background-color: $color; }"
 sass(input = list(color = "purple", rule1, rule2))
@@ -304,10 +338,38 @@ stdin:5 DEBUG: parm2 is 4
 
 ]
 
+.panel[.panel-name[➿Loops]
+.pull-left[
+```{r, eval=FALSE}
+sass(input = list(
+  colors = c("green", "red"),
+  "@each $color in $colors {
+    .alert-#{$color} {
+      color: $color;
+    }
+  }"
+))
+```
+]
+
+.pull-right[
+```
+#> .alert-green {
+#>   color: green;
+#> }
+#> 
+#> .alert-red {
+#>   color: red;
+#> }
+```
+]
+]
+
 .panel[.panel-name[With Shiny]
 
 .xsmall.pull-left[
 ```{r, eval=FALSE}
+# CSS to include in your app
 css <- sass(
   sass_layer(
     defaults = list(
@@ -351,7 +413,13 @@ class: header_background
 ## {fresh}
 - Built on top of `{sass}`.
 - For `{shiny}`, `{shinydashboard}`, ...
+
+```{r, eval=FALSE}
+install.packages("fresh")
+```
 ]
+
+--
 
 .pull-right[
 ## {bslib}
@@ -361,11 +429,15 @@ class: header_background
 - Dynamic theming. 
 - Conditional rendering. 
 - ...
+
+```{r, eval=FALSE}
+install.packages("bslib")
+```
 ]
 
 ---
 class: header_background
-# {fresh}
+# A dark theme with {fresh}
 
 <br>
 
@@ -408,7 +480,7 @@ knitr::include_graphics("assets/images/bs4Dash-fresh.png")
 
 ---
 class: header_background
-# {bslib}
+# A neon theme with {bslib}
 
 <br>
 
@@ -441,108 +513,336 @@ knitr::include_graphics("assets/images/bootstraplib-theme-preview.png")
 
 
 ---
-class: inverse center title-slide middle
-# 💃 Unleash app interactivity with JavaScript 💃
+class: header_background
+# Dynamic theming example
 
+<br>
+
+.center[
+<iframe width="100%" src="https://unleash-shiny.shinyapps.io/bslib_dynamic-theming" allowfullscreen="" frameborder="0" scrolling="yes" height="300px"></iframe>
+]
+
+
+---
+class: header_background
+# Conditional rendering
+
+<br>
+
+.pull-left[
+## BS4 accordion
+<iframe width="100%" src="https://unleash-shiny.shinyapps.io/bslib_conditional-rendering_bs4-accordions" allowfullscreen="" frameborder="0" scrolling="yes" height="300px"></iframe>
+]
+
+
+.pull-right[
+## BS5 accordion
+<iframe width="100%" src="https://unleash-shiny.shinyapps.io/bslib_conditional-rendering_bs5-accordions" allowfullscreen="" frameborder="0" scrolling="yes" height="300px"></iframe>
+]
+
+
+---
+class: inverse center title-slide middle
+# 💃 Unleash interactivity with JS 💃
+
+
+---
+class: header_background
+# CSS does not solve all issues
+
+<br>
+
+- How to add new inputs?
+
+```{r, echo = FALSE, out.width='35%', fig.align='center'}
+knitr::include_graphics("assets/images/jquery-knobs.png")
+```
 
 ---
 class: header_background 
 # Add new inputs
 
----
-class: header_background
-# Include React
 
 ---
 class: header_background
-# Optimize with custom handlers
+# Include any web framework
+
+<br>
+
+.panelset[
+.panel[.panel-name[📣 Meet `{packer}`]
+
+.small.pull-left[
+- A `{usethis}` for JavaScript/R projects.
+- Supports Shiny outputs, inputs, htmlwidgets, extensions, ...
+- Predefined templates: React, Vue, Framework7.
+```{r, eval=FALSE}
+install.packages("packer")
+remotes::install_github("JohnCoene/packer")
+```
+]
+
+.pull-right[
+<a href="https://github.com/JohnCoene/packer"><img src="assets/images/packer.png" width="40%" class="svg-img"/></a>
+]
+
+]
+
+.panel[.panel-name[💥 Scaffold project]
+.small.pull-left[
+We call:
+
+```r
+golem::create_golem(...)
+packer::scaffold_golem(framework7 = TRUE)
+packer::bundle()
+```
+
+- Sets all the necessary structure (npm, loaders, webpack, ...).
+- So that you don't have to worry too much.
+]
+
+.pull-right[
+```{r framework7-assets, echo = FALSE, out.width='75%'}
+knitr::include_graphics("assets/images/packer-f7-scaffold.png")
+```
+]
+
+]
+
+.panel[.panel-name[😄 Enjoy]
+.center[
+<iframe width="100%" src="https://dgranjon.shinyapps.io/vdpMod" allowfullscreen="" frameborder="0" scrolling="yes" height="300px"></iframe>
+]
+]
+
+]
+
+
+---
+class: header_background
+# Optimize: improve user experience
+
+<br>
+
+.panelset[
+.panel[.panel-name[`renderUI` causes lags]
+.pull-left[
+<iframe width="100%" src="https://unleash-shiny.shinyapps.io/input-system_update-box-renderUI" allowfullscreen="" frameborder="0" scrolling="yes" height="300px"></iframe>
+]
+
+.small.pull-right[
+```{r, eval=FALSE}
+dummy_task <- reactive({
+  Sys.sleep(5)
+  12
+})
+
+output$custom_box <- renderUI({
+  dummy_task() #<<
+  box(
+    title = "Box",
+    width = dummy_task(),
+    "Box body",
+    background = input$background
+  )
+})
+```
+]
+]
+
+.panel[.panel-name[Prefer `update_*` functions]
+
+.pull-left[
+<iframe width="100%" src="https://unleash-shiny.shinyapps.io/input-system_boxes-on-steroids-2" allowfullscreen="" frameborder="0" scrolling="yes" height="300px"></iframe>
+]
+
+.xsmall.pull-right[
+```{r, eval=FALSE}
+dummy_task <- reactive({
+  Sys.sleep(5)
+  12
+})
+
+observeEvent(dummy_task(), {
+  updateBox2( #<<
+    "mybox",
+    action = "update",
+    options = list(
+      width = dummy_task(),
+      title = tagList(
+        shinydashboardPlus::dashboardBadge(
+          "New",
+          color = "red"
+        ),
+        "New title"
+      )
+    )
+  )
+})
+```
+]
+
+]
+
+]
+
 
 
 
 ---
 class: inverse center title-slide middle
-# 🧙‍♀ Be a wizard: new template from scratch 🧙‍♀
+# 🧙‍♀ New template from scratch 🧙‍♀
 
 
 ---
 class: header_background 
-# TODO
+# Introducing {charpente}
 
+<br>
 
-<!--
+.panelset[
+.panel[.panel-name[📣 Meet `{charpente}`]
+.xsmall.pull-left[
+- Plug and play __package__ structure.
+- Import dependencies from [jsdelivr](https://www.jsdelivr.com/).
+- __Easy__ HTML to R conversion.
+- R and JS __boilerplates__: `{shiny}` input bindings, `{shiny}` message handlers, ...
+- Seamless JavaScript code management with [esbuild](https://esbuild.github.io/).
 
----
-class: header_background 
-# Welcome {shinyMobile}? 
+```{r, eval=FALSE}
+remotes::install_github("RinteRface/charpente")
+```
 
-<br/>
-Built on top of the [Framework7](https://framework7.io/) web framework.
-
-.pull-left[
-- Native look and feel for iOS and Android
-- PWA support.
-- ... also works for desktop apps 😏
 ]
 
 .pull-right[
-<img src="assets/images/shinyMobile.svg" width="20%" style="display: block; margin: auto;" class="svg-img"/>
+<a href="https://github.com/RinteRface/charpente"><img src="assets/images/charpente.png" width="40%" style="display: block; margin: auto;" class="svg-img"/></a>
+]
 ]
 
+.panel[.panel-name[👨‍🏭 Workflow example]
+.xsmall.pull-left[
+```{r, eval=FALSE}
+library(charpente)
 
----
-class: header_background
-# Progressive web apps (PWA)
+path <- file.path(tempdir(), "mypkg")
+create_charpente(path, license = "mit")
 
-<br/>
-## Take some advantages of both worlds:
+# Once the package is created and opened
 
-  - Can be __installed__ on the device ... 
-  - ... But run via a web browser.
-  - Provide __offline__ features (don't expect too much).
-  - One code base (web languages).
+# Look for all bulma flavors
+get_dependency_versions("bulma")
 
-<br/>
---
-.center[
-`r emo::ji("sad")` Less performance than native. 
-]
+# Download bulma locally
+create_dependency("bulma")
 
----
-class: center middle
-# Your turn `r emo::ji("experiment")`! 
-
-```{r, echo = FALSE, out.width='40%', fig.align='center'}
-knitr::include_graphics("assets/images/excited-minions.gif")
+# Create JS handler
+create_custom_handler("modal")
+# Create input binding
+create_input_binding("myinput")
+# Compress JS for production
+build_js()
+devtools::load_all()
 ```
-
----
-class: header_background
-# Production ready app in minutes
-
-##  {truelle} is a {golem} GUI generator `r emo::ji("wizard")`! 
-
-.center[
-<img src="assets/images/truelle.png" width="20%" style="display: block; margin: auto;" class="svg-img"/>
 ]
+
+.pull-right[
+```{r, echo = FALSE, out.width='75%', fig.align='center'}
+knitr::include_graphics("assets/images/charpente-pkg.png")
+```
+]
+
+]
+
+.panel[.panel-name[Applications]
+.center[
+<a href="https://github.com/RinteRface/bs4Dash"><img src="assets/images/bs4Dash.svg" width="20%" style="margin: auto;" class="svg-img"/></a>
+<a href="https://github.com/RinteRface/shinyMobile"><img src="assets/images/shinyMobile.svg" width="20%" style="margin: auto;" class="svg-img"/></a>
+<a href="https://github.com/RinteRface/shinydashboardPlus"><img src="assets/images/shinydashboardPlus.svg" width="20%" style="margin: auto;" class="svg-img"/></a>
+]
+
+]
+
+]
+
+
+
+
+
 
 
 ---
 class: end_part_1
 
+---
+class: inverse center title-slide middle
+# 🚄 Sorry I don't have time 🚄
 
 
 ---
 class: header_background
-# Slide
+# Quickly get started with {truelle} 
 
-```{r, echo = FALSE, out.width='40%', fig.align='center'}
-knitr::include_graphics("assets/images/alors_heureux.gif")
+<br>
+
+##  {truelle} is a {golem} GUI generator <a href="https://github.com/RinteRface/truelle"><img src="assets/images/truelle.png" width="10%" style="margin: auto;" class="svg-img"/></a>
+
+--
+
+.small.pull-left[
+```{r, eval=FALSE}
+remotes::install_github("RinteRface/truelle")
+library(truelle)
+run_app()
 ```
+]
 
-
+.pull-right[
+```{r, echo = FALSE, out.width='60%', fig.align='center'}
+knitr::include_graphics("assets/images/truelle-ui-template.png")
+```
+]
 
 
 ---
-class: end_part_2
+class: header_background 
+# {shinyMobile}
 
--->
+<br>
+
+Built on top of the [Framework7](https://framework7.io/) web framework.
+
+.small.pull-left[
+- Native look and feel for iOS and Android
+- PWA support:
+  - Can be __installed__ on the device ... 
+  - ... But run via a web browser.
+  - Provide __offline__ features (don't expect too much).
+  - One code base (web languages).
+- ... also works for desktop apps 😏
+]
+
+.pull-right[
+<img src="assets/images/shinyMobile.svg" width="40%" style="display: block; margin: auto;" class="svg-img"/>
+]
+
+
+---
+class: center middle
+# Want to learn more ❓
+
+.center[
+📖 [Read my book](https://unleash-shiny.rinterface.com) 📖
+]
+
+```{r, echo = FALSE, out.width='20%', fig.align='center'}
+knitr::include_graphics("assets/images/shiny-ui-book.png")
+```
+
+.center[
+Thanks you 🙇
+]
+
+---
+class: end_part_2
