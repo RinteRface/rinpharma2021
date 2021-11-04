@@ -4,7 +4,7 @@
     <title>Outstanding User Interfaces with Shiny</title>
     <meta charset="utf-8" />
     <meta name="author" content="David Granjon" />
-    <meta name="date" content="2021-10-28" />
+    <meta name="date" content="2021-11-04" />
     <script src="assets/libs/header-attrs/header-attrs.js"></script>
     <link href="assets/libs/tile-view/tile-view.css" rel="stylesheet" />
     <script src="assets/libs/tile-view/tile-view.js"></script>
@@ -44,7 +44,7 @@ class: inverse, center, title-slide, middle
 
 ## David Granjon
 
-### 2021-10-28
+### 2021-11-04
 ### R in Pharma 
 
 
@@ -59,7 +59,6 @@ We're in for 20 minutes of **fun**!
 
 - Grab a ☕
 - Make yourself comfortable 🛋 or 🧘
-- Ask questions ❓ 
 
 .flex.tc[
 .w-30.mr3.center[
@@ -86,7 +85,7 @@ class: header_background
 &lt;img src="assets/images/shiny.svg" width="20%" style="display: block; margin: auto;" class="svg-img"/&gt;
 ]
 
-- `{Shiny}` is about __10__ years old 😲😲😲 
+- `{Shiny}` is about __10__ years old 😲😲😲. 
 - Today, many tools can make your apps __shining__.
 - Let's review some of them ...
 
@@ -194,11 +193,25 @@ class: header_background
 
 &lt;br&gt;
 
-CSS stands for Cascading Style Sheets
+CSS stands for Cascading Style Sheets,
 
+
+.small.pull-left[
+### Apply CSS
 
 .pull-left[
-## Apply CSS
+- Mechanism:
+
+```
+selector {
+  property: value;
+}
+```
+]
+
+.pull-right[
+- With Shiny:
+
 
 ```r
 tags$style(
@@ -208,6 +221,8 @@ tags$style(
   "
 )
 ```
+]
+
 ]
 
 .pull-right[
@@ -222,8 +237,8 @@ class: header_background
 &lt;br&gt;
 
 - Easy to __repeat__ yourself.
-- Difficult to read and maintain. 
-- It's a mess ...
+- Difficult to read and maintain: 🍝 __spaghetti__ 🍝.
+- It's just a __mess__ ...
 
 
 &lt;img src="assets/images/alors_heureux.gif" width="40%" style="display: block; margin: auto;" /&gt;
@@ -237,7 +252,8 @@ class: header_background
 - Sass = Syntactically Awesome Style Sheets.
 - __Programmable__: variables, functions, loops, operators, modules, ...
 - Modern web development workflow.
-- Will motivate you to learn CSS.
+- __DRY__ programming.
+- Will __motivate__ you to learn more CSS.
 
 --
 
@@ -504,12 +520,22 @@ class: header_background
 
 &lt;br&gt;
 
-Static plot theming requires `{thematic}`
+Static plot (base R, ggplot2, ...) theming requires `{thematic}`.
 
 .center[
 &lt;iframe width="100%" src="http://localhost:3516" allowfullscreen="" frameborder="0" scrolling="yes" height="400px"&gt;&lt;/iframe&gt;
 ]
 
+
+---
+class: header_background
+# Dynamic theming with {bs4Dash}
+
+&lt;br&gt;
+
+.center[
+&lt;iframe width="100%" src="https://dgranjon.shinyapps.io/bs4DashDemo/" allowfullscreen="" frameborder="0" scrolling="yes" height="450px" style="font-size: 0.5em"&gt;&lt;/iframe&gt;
+]
 
 ---
 class: header_background
@@ -542,18 +568,53 @@ class: header_background
 
 &lt;br&gt;
 
-- How to add new inputs?
+What can JS do for me ❓
 
-&lt;img src="assets/images/jquery-knobs.png" width="35%" style="display: block; margin: auto;" /&gt;
+.pull-left[
+- Add new __input widgets__.
+- __Lighten__ the R logic be delegating some tasks to JS.
+- More __interactive__ apps.
+- Overall, a better user experience.
+]
 
----
-class: header_background 
-# Add new inputs
+.pull-right[
+&lt;iframe width="100%" src="http://localhost:3523" allowfullscreen="" frameborder="0" scrolling="yes" height="400px"&gt;&lt;/iframe&gt;
+]
 
 
 ---
 class: header_background
-# Include any web framework
+# Unleash app interactivity: example
+
+&lt;br&gt;
+
+.center[
+&lt;video height="400px" width="100%" controls&gt;
+  &lt;source src="assets/movies/js-interactivity-demo.mov" type="video/mp4"&gt;
+]
+
+
+---
+class: header_background
+# JS code can also become messy
+
+&lt;br&gt;
+
+--
+
+- How do I include __JS__ in my Shiny project ❓
+
+--
+
+- What are the __best practices__ around JS code management ❓
+
+--
+
+- Let's try to bring some answers ...
+
+---
+class: header_background
+# Relevant R/JS projects
 
 &lt;br&gt;
 
@@ -592,21 +653,44 @@ packer::bundle()
 ]
 
 .pull-right[
-&lt;img src="assets/images/packer-f7-scaffold.png" width="75%" /&gt;
+&lt;video autosize="true" controls&gt;
+  &lt;source src="assets/movies/packer-demo.mov" type="video/mp4"&gt;
+&lt;/video&gt;
 ]
 
 ]
 
-.panel[.panel-name[😄 Enjoy]
-.pull-left[
-R in Pharm 2021 RinteRface [workshop](https://rinpharma2021.rinterface.com/).
+]
+
+
+---
+class: header_background
+# Application to Framework7
+
+&lt;br&gt;
+
+.small.pull-left[
+- Framework7: first class mobile web framework.
+- R in Pharma 2021 RinteRface [workshop](https://rinpharma2021.rinterface.com/).
+
+- Advantages:
+  - No need to develop a Shiny extension.
+  - Faster app.
+  - Ease collaboration with front end dev.
 ]
 
 .pull-right[
-&lt;iframe width="100%" src="http://localhost:3519" allowfullscreen="" frameborder="0" scrolling="yes" height="300px"&gt;&lt;/iframe&gt;
-]
-]
-
+&lt;div class="md-iphone-5 md-black-device" style="font-size: 0.5em; margin-top: -100px; !important;"&gt;
+&lt;div class="md-body"&gt;
+&lt;div class="md-buttons"&gt;&lt;/div&gt;
+&lt;div class="md-front-camera"&gt;&lt;/div&gt;
+&lt;div class="md-top-speaker"&gt;&lt;/div&gt;
+&lt;div class="md-screen"&gt;
+&lt;iframe width="100%" src="http://localhost:3519" allowfullscreen="" frameborder="0" scrolling="yes" height="470px"&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;button class="md-home-button"&gt;&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 ]
 
 
@@ -682,7 +766,6 @@ observeEvent(dummy_task(), {
 
 
 
-
 ---
 class: inverse center title-slide middle
 # 🧙‍♀ New template from scratch 🧙‍♀
@@ -743,7 +826,9 @@ devtools::load_all()
 ]
 
 .pull-right[
-&lt;img src="assets/images/charpente-pkg.png" width="75%" style="display: block; margin: auto;" /&gt;
+&lt;video height="400px" width="100%" controls&gt;
+  &lt;source src="assets/movies/charpente-demo.mov" type="video/mp4"&gt;
+&lt;/video&gt;
 ]
 
 ]
@@ -774,12 +859,45 @@ class: inverse center title-slide middle
 
 
 ---
-class: header_background
-# Quickly get started with {truelle} 
+class: header_background 
+# Use existing templates: &lt;a href="https://github.com/RinteRface/shinyMobile"&gt;&lt;img src="assets/images/shinyMobile.svg" width="5%" style="display: inline; margin: auto;" class="svg-img"/&gt;&lt;/a&gt;
 
 &lt;br&gt;
 
-##  {truelle} is a {golem} GUI generator &lt;a href="https://github.com/RinteRface/truelle"&gt;&lt;img src="assets/images/truelle.png" width="10%" style="margin: auto;" class="svg-img"/&gt;&lt;/a&gt;
+Built on top of [Framework7](https://framework7.io/).
+
+.small.pull-left[
+- Native look and feel for iOS and Android
+- PWA support:
+  - Can be __installed__ on the device ... 
+  - ... But run via a web browser.
+  - Provide __offline__ features (don't expect too much).
+  - One code base (web languages).
+- ... also works for desktop apps 😏
+]
+
+.pull-right[
+&lt;div class="md-iphone-5 md-white-device" style="font-size: 0.5em; margin-top: -150px; !important;"&gt;
+&lt;div class="md-body"&gt;
+&lt;div class="md-buttons"&gt;&lt;/div&gt;
+&lt;div class="md-front-camera"&gt;&lt;/div&gt;
+&lt;div class="md-top-speaker"&gt;&lt;/div&gt;
+&lt;div class="md-screen"&gt;
+&lt;iframe width="100%" src="http://localhost:3522" allowfullscreen="" frameborder="0" scrolling="yes" height="470px"&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;button class="md-home-button"&gt;&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+]
+
+
+---
+class: header_background
+# I want to go faster!
+
+&lt;br&gt;
+
+###  {truelle} is a {golem} GUI generator &lt;a href="https://github.com/RinteRface/truelle"&gt;&lt;img src="assets/images/truelle.png" width="5%" style="margin: auto;" class="svg-img"/&gt;&lt;/a&gt;
 
 --
 
@@ -793,30 +911,9 @@ run_app()
 ]
 
 .pull-right[
-&lt;img src="assets/images/truelle-ui-template.png" width="60%" style="display: block; margin: auto;" /&gt;
-]
-
-
----
-class: header_background 
-# {shinyMobile}
-
-&lt;br&gt;
-
-Built on top of the [Framework7](https://framework7.io/) web framework.
-
-.small.pull-left[
-- Native look and feel for iOS and Android
-- PWA support:
-  - Can be __installed__ on the device ... 
-  - ... But run via a web browser.
-  - Provide __offline__ features (don't expect too much).
-  - One code base (web languages).
-- ... also works for desktop apps 😏
-]
-
-.pull-right[
-&lt;img src="assets/images/shinyMobile.svg" width="40%" style="display: block; margin: auto;" class="svg-img"/&gt;
+&lt;video height="400px" width="100%" controls&gt;
+  &lt;source src="assets/movies/truelle-demo.mov" type="video/mp4"&gt;
+&lt;/video&gt;
 ]
 
 
@@ -831,7 +928,7 @@ class: center middle
 &lt;img src="assets/images/shiny-ui-book.png" width="20%" style="display: block; margin: auto;" /&gt;
 
 .center[
-Thanks you 🙇
+Thanks 🙇
 ]
 
 ---

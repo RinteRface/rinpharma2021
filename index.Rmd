@@ -73,7 +73,6 @@ We're in for 20 minutes of **fun**!
 
 - Grab a `r ji("coffee")`
 - Make yourself comfortable `r ji("couch")` or 🧘
-- Ask questions `r ji("question")` 
 
 .flex.tc[
 .w-30.mr3.center[
@@ -212,11 +211,25 @@ class: header_background
 
 <br>
 
-CSS stands for Cascading Style Sheets
+CSS stands for Cascading Style Sheets,
 
+
+.small.pull-left[
+### Apply CSS
 
 .pull-left[
-## Apply CSS
+- Mechanism:
+
+```
+selector {
+  property: value;
+}
+```
+]
+
+.pull-right[
+- With Shiny:
+
 ```{r, eval=FALSE}
 tags$style(
   "p {
@@ -225,6 +238,8 @@ tags$style(
   "
 )
 ```
+]
+
 ]
 
 .pull-right[
@@ -239,8 +254,8 @@ class: header_background
 <br>
 
 - Easy to __repeat__ yourself.
-- Difficult to read and maintain. 
-- It's a mess ...
+- Difficult to read and maintain: 🍝 __spaghetti__ 🍝.
+- It's just a __mess__ ...
 
 
 ```{r, echo = FALSE, out.width='40%', fig.align='center'}
@@ -256,7 +271,8 @@ class: header_background
 - Sass = Syntactically Awesome Style Sheets.
 - __Programmable__: variables, functions, loops, operators, modules, ...
 - Modern web development workflow.
-- Will motivate you to learn CSS.
+- __DRY__ programming.
+- Will __motivate__ you to learn more CSS.
 
 --
 
@@ -516,12 +532,22 @@ class: header_background
 
 <br>
 
-Static plot theming requires `{thematic}`
+Static plot (base R, ggplot2, ...) theming requires `{thematic}`.
 
 .center[
 <iframe width="100%" src="http://localhost:3516" allowfullscreen="" frameborder="0" scrolling="yes" height="400px"></iframe>
 ]
 
+
+---
+class: header_background
+# Dynamic theming with {bs4Dash}
+
+<br>
+
+.center[
+<iframe width="100%" src="https://dgranjon.shinyapps.io/bs4DashDemo/" allowfullscreen="" frameborder="0" scrolling="yes" height="450px" style="font-size: 0.5em"></iframe>
+]
 
 ---
 class: header_background
@@ -554,20 +580,53 @@ class: header_background
 
 <br>
 
-- How to add new inputs?
+What can JS do for me ❓
 
-```{r, echo = FALSE, out.width='35%', fig.align='center'}
-knitr::include_graphics("assets/images/jquery-knobs.png")
-```
+.pull-left[
+- Add new __input widgets__.
+- __Lighten__ the R logic be delegating some tasks to JS.
+- More __interactive__ apps.
+- Overall, a better user experience.
+]
 
----
-class: header_background 
-# Add new inputs
+.pull-right[
+<iframe width="100%" src="http://localhost:3523" allowfullscreen="" frameborder="0" scrolling="yes" height="400px"></iframe>
+]
 
 
 ---
 class: header_background
-# Include any web framework
+# Unleash app interactivity: example
+
+<br>
+
+.center[
+<video height="400px" width="100%" controls>
+  <source src="assets/movies/js-interactivity-demo.mov" type="video/mp4">
+]
+
+
+---
+class: header_background
+# JS code can also become messy
+
+<br>
+
+--
+
+- How do I include __JS__ in my Shiny project ❓
+
+--
+
+- What are the __best practices__ around JS code management ❓
+
+--
+
+- Let's try to bring some answers ...
+
+---
+class: header_background
+# Relevant R/JS projects
 
 <br>
 
@@ -605,23 +664,44 @@ packer::bundle()
 ]
 
 .pull-right[
-```{r framework7-assets, echo = FALSE, out.width='75%'}
-knitr::include_graphics("assets/images/packer-f7-scaffold.png")
-```
+<video autosize="true" controls>
+  <source src="assets/movies/packer-demo.mov" type="video/mp4">
+</video>
 ]
 
 ]
 
-.panel[.panel-name[😄 Enjoy]
-.pull-left[
-R in Pharm 2021 RinteRface [workshop](https://rinpharma2021.rinterface.com/).
+]
+
+
+---
+class: header_background
+# Application to Framework7
+
+<br>
+
+.small.pull-left[
+- Framework7: first class mobile web framework.
+- R in Pharma 2021 RinteRface [workshop](https://rinpharma2021.rinterface.com/).
+
+- Advantages:
+  - No need to develop a Shiny extension.
+  - Faster app.
+  - Ease collaboration with front end dev.
 ]
 
 .pull-right[
-<iframe width="100%" src="http://localhost:3519" allowfullscreen="" frameborder="0" scrolling="yes" height="300px"></iframe>
-]
-]
-
+<div class="md-iphone-5 md-black-device" style="font-size: 0.5em; margin-top: -100px; !important;">
+<div class="md-body">
+<div class="md-buttons"></div>
+<div class="md-front-camera"></div>
+<div class="md-top-speaker"></div>
+<div class="md-screen">
+<iframe width="100%" src="http://localhost:3519" allowfullscreen="" frameborder="0" scrolling="yes" height="470px"></iframe>
+</div>
+<button class="md-home-button"></button>
+</div>
+</div>
 ]
 
 
@@ -695,7 +775,6 @@ observeEvent(dummy_task(), {
 
 
 
-
 ---
 class: inverse center title-slide middle
 # 🧙‍♀ New template from scratch 🧙‍♀
@@ -754,9 +833,9 @@ devtools::load_all()
 ]
 
 .pull-right[
-```{r, echo = FALSE, out.width='75%', fig.align='center'}
-knitr::include_graphics("assets/images/charpente-pkg.png")
-```
+<video height="400px" width="100%" controls>
+  <source src="assets/movies/charpente-demo.mov" type="video/mp4">
+</video>
 ]
 
 ]
@@ -787,37 +866,12 @@ class: inverse center title-slide middle
 
 
 ---
-class: header_background
-# Quickly get started with {truelle} 
-
-<br>
-
-##  {truelle} is a {golem} GUI generator <a href="https://github.com/RinteRface/truelle"><img src="assets/images/truelle.png" width="10%" style="margin: auto;" class="svg-img"/></a>
-
---
-
-.small.pull-left[
-```{r, eval=FALSE}
-remotes::install_github("RinteRface/truelle")
-library(truelle)
-run_app()
-```
-]
-
-.pull-right[
-```{r, echo = FALSE, out.width='60%', fig.align='center'}
-knitr::include_graphics("assets/images/truelle-ui-template.png")
-```
-]
-
-
----
 class: header_background 
-# {shinyMobile}
+# Use existing templates: <a href="https://github.com/RinteRface/shinyMobile"><img src="assets/images/shinyMobile.svg" width="5%" style="display: inline; margin: auto;" class="svg-img"/></a>
 
 <br>
 
-Built on top of the [Framework7](https://framework7.io/) web framework.
+Built on top of [Framework7](https://framework7.io/).
 
 .small.pull-left[
 - Native look and feel for iOS and Android
@@ -830,7 +884,42 @@ Built on top of the [Framework7](https://framework7.io/) web framework.
 ]
 
 .pull-right[
-<img src="assets/images/shinyMobile.svg" width="40%" style="display: block; margin: auto;" class="svg-img"/>
+<div class="md-iphone-5 md-white-device" style="font-size: 0.5em; margin-top: -150px; !important;">
+<div class="md-body">
+<div class="md-buttons"></div>
+<div class="md-front-camera"></div>
+<div class="md-top-speaker"></div>
+<div class="md-screen">
+<iframe width="100%" src="http://localhost:3522" allowfullscreen="" frameborder="0" scrolling="yes" height="470px"></iframe>
+</div>
+<button class="md-home-button"></button>
+</div>
+</div>
+]
+
+
+---
+class: header_background
+# I want to go faster!
+
+<br>
+
+###  {truelle} is a {golem} GUI generator <a href="https://github.com/RinteRface/truelle"><img src="assets/images/truelle.png" width="5%" style="margin: auto;" class="svg-img"/></a>
+
+--
+
+.small.pull-left[
+```{r, eval=FALSE}
+remotes::install_github("RinteRface/truelle")
+library(truelle)
+run_app()
+```
+]
+
+.pull-right[
+<video height="400px" width="100%" controls>
+  <source src="assets/movies/truelle-demo.mov" type="video/mp4">
+</video>
 ]
 
 
@@ -847,7 +936,7 @@ knitr::include_graphics("assets/images/shiny-ui-book.png")
 ```
 
 .center[
-Thanks you 🙇
+Thanks 🙇
 ]
 
 ---
